@@ -17,44 +17,6 @@ fetch("https://restcountries.com/v3.1/all")
     });
   })
   .catch((err) => console.log("error : ", err));
-  
-  const fetchWeatherButton = document.getElementById("fetchWeather");
- 
-fetchWeatherButton.addEventListener("click", async () => {
-  try {
-    const weatherData = await fetchWeatherData(city);
-    displayWeather(weatherData);
-  } catch (error) {
-    console.error("Error fetching weather data:", error);
-  }
-});
- 
-async function fetchWeatherData(city) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
- 
-  try {
-    const response = await fetch(apiUrl);
- 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
- 
-function displayWeather(weatherData) {
-    const weatherInfo = document.getElementById('weatherInfo');
-    weatherInfo.innerHTML = `
-        <h2>Weather in ${weatherData.name}, ${weatherData.sys.country}</h2>
-        <p>Temperature: ${weatherData.main.temp}°C</p>
-        <p>Weather: ${weatherData.weather[0].description}</p>
-    `;
-}
-
-    
-
-   
-  
 
 function createCountryCard(element) {
     document.body.innerHTML += `
